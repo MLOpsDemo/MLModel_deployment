@@ -60,6 +60,7 @@ jobs:
       with:
         name: my-trained-pipeline
     - run: mv *.pkl bikeshare_project/bikeshare_model/trained_models/
+    - run: cd bikeshare_project
     - name: Install dependencies
       run: pip install --upgrade build
     - name: Build package
@@ -67,7 +68,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: my-build-package
-        path: bikeshare_project/dist/*.whl
+        path: dist/*.whl
 
   push-image:
     needs: [train, test, build]
@@ -79,6 +80,7 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: my-build-package
+    - run: cd ../
     - run: mv *.whl bikeshare_project/bikeshare_model_api/
 
     - name: Login to Docker hub
