@@ -23,7 +23,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: my-trained-pipeline
-        path: bikeshare_model/trained_models/*.pkl
+        path: bikeshare_project/bikeshare_model/trained_models/*.pkl
 
   test:
     needs: train
@@ -59,7 +59,7 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: my-trained-pipeline
-    - run: mv *.pkl bbikeshare_project/ikeshare_model/trained_models/
+    - run: mv *.pkl bikeshare_project/bikeshare_model/trained_models/
     - name: Install dependencies
       run: pip install --upgrade build
     - name: Build package
@@ -67,7 +67,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: my-build-package
-        path: dist/*.whl
+        path: bikeshare_project/dist/*.whl
 
   push-image:
     needs: [train, test, build]
