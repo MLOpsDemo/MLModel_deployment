@@ -90,6 +90,7 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
 
     - name: Build the Docker image for Fastapi app
+      working-directory: ./bikeshare_project
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
       run: docker build . -f bikeshare_project/Dockerfile -t $DOCKER_USER/bikeshare-fastapi:latest
