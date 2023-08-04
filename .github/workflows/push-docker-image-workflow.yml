@@ -93,7 +93,7 @@ jobs:
       working-directory: ./bikeshare_project
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
-      run: docker build . -f bikeshare_project/Dockerfile -t $DOCKER_USER/bikeshare-fastapi:latest
+      run: docker build . -f Dockerfile -t $DOCKER_USER/bikeshare-fastapi:latest
 
     - name: Push the Docker Image
       env:
