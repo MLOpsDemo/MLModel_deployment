@@ -64,6 +64,7 @@ jobs:
       working-directory: ./bikeshare_project
       run: pip install --upgrade build
     - name: Build package
+      working-directory: ./bikeshare_project
       run: python -m build
     - uses: actions/upload-artifact@v2
       with:
