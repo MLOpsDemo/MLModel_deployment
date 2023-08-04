@@ -26,14 +26,17 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      run: |
-        pip install -r bikeshare_project/requirements/test_requirements.txt
-    - name: Train pipeline
-      run: |
+      run: | 
+        pip install -r bikeshare_project/requirements/test_requirements.txt 
+    - name: Train pipeline 
+      run: | 
         python bikeshare_project/bikeshare_model/train_pipeline.py
     - name: Test with pytest
       run: |
         pytest
-    - name: Lint with pylint
-      run: |
+    - name: Format code with Black
+      run: | 
+        black bikeshare_project/bikeshare_model/*.py 
+    - name: Lint with pylint 
+      run: | 
         pylint --disable=R,C bikeshare_project/bikeshare_model/{pipeline,train_pipeline,predict}.py
